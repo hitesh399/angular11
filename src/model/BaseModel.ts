@@ -1,15 +1,14 @@
 interface BaseModelAttribute {
-  id?: string;
+  _id?: string;
   editMode?: boolean;
 }
 
 export class BaseModel<T extends BaseModelAttribute> {
-  
   protected attributes: T;
   protected cloneAttributes: T;
 
   constructor(data: T) {
-    this.attributes = { ...data, id: this.generateId(), editMode: false };
+    this.attributes = { ...data, _id: this.generateId(), editMode: false };
     this.cloneAttributes = JSON.parse(JSON.stringify(this.attributes));
   }
 
@@ -17,8 +16,8 @@ export class BaseModel<T extends BaseModelAttribute> {
     this.cloneAttributes = JSON.parse(JSON.stringify(this.attributes));
     this.attributes.editMode = value;
   }
-  get id(): string {
-    return this.attributes.id ? this.attributes.id : '';
+  get _id(): string {
+    return this.attributes._id ? this.attributes._id : '';
   }
   get editMode() {
     return this.attributes.editMode ? this.attributes.editMode : false;
@@ -59,4 +58,5 @@ export class BaseModel<T extends BaseModelAttribute> {
     const { editMode, ...restAttributes } = this.attributes;
     return restAttributes;
   }
+  
 }

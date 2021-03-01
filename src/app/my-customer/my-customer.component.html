@@ -5,16 +5,29 @@
   <h2>Create Customer</h2>
   <form #customerForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="exampleInputName">Name</label>
+      <label for="exampleInputName">First Name</label>
       <input
         type="name"
         name="name"
         class="form-control"
         id="exampleInputName"
-        [(ngModel)]="model.attr.name"
+        [(ngModel)]="model.attr.first_name"
         name="name"
         aria-describedby="nameHelp"
-        placeholder="Enter Name"
+        placeholder="Enter First Name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputName">Last Name</label>
+      <input
+        type="name"
+        name="name"
+        class="form-control"
+        id="exampleInputName"
+        [(ngModel)]="model.attr.last_name"
+        name="name"
+        aria-describedby="nameHelp"
+        placeholder="Enter Last Name"
       />
     </div>
     <div class="form-group">
@@ -43,6 +56,19 @@
         placeholder="Enter address"
       />
     </div>
+    <div class="form-group">
+      <label for="exampleInputAddress">Salary</label>
+      <input
+        type="number"
+        name="salary"
+        class="form-control"
+        id="exampleInputsalary"
+        [(ngModel)]="model.attr.salary"
+        name="salary"
+        aria-describedby="salaryHelp"
+        placeholder="Enter salary"
+      />
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
@@ -51,7 +77,8 @@
     <table class="table ">
       <thead class="thead-dark table-striped table-bordered">
         <tr>
-          <th>Name</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Email</th>
           <th>Address</th>
           <th>-</th>
@@ -59,16 +86,27 @@
       </thead>
       <tbody>
         <tr *ngIf="!customers.toJSON().length">
-          <td colspan="4" class="text-center">No Record Found</td>
+          <td appHighlightRow="red"  colspan="4" class="text-center">No Record Found</td>
         </tr>
-        <tr *ngFor="let customer of customers.toJSON()">
+        <tr appHighlightRow="green"   *ngFor="let customer of customers.toJSON()">
           <td>
-            <span *ngIf="!customer.editMode">{{ customer.attr.name }}</span>
+            <span *ngIf="!customer.editMode">{{ customer.attr.first_name | uppercase }}</span>
             <input
               *ngIf="customer.editMode"
               type="text"
               class="form-control"
-              [(ngModel)]="customer.attr.name"
+              [(ngModel)]="customer.attr.first_name"
+              name="name"
+              placeholder="Enter Name"
+            />
+          </td>
+          <td>
+            <span *ngIf="!customer.editMode">{{ customer.attr.last_name | uppercase }}</span>
+            <input
+              *ngIf="customer.editMode"
+              type="text"
+              class="form-control"
+              [(ngModel)]="customer.attr.last_name"
               name="name"
               placeholder="Enter Name"
             />
@@ -101,28 +139,28 @@
             <button
               *ngIf="!customer.editMode"
               class="btn btn-info mr-2"
-              (click)="toggleEditable(customer.id)"
+              (click)="toggleEditable(customer._id)"
             >
               Edit
             </button>
             <button
             class="btn btn-primary mr-2"
               *ngIf="customer.editMode"
-              (click)="customers.updateCustomer(customer.id)"
+              (click)="customers.updateCustomer(customer._id)"
             >
               Update
             </button>
             <button
             class="btn btn-danger mr-2"
               *ngIf="!customer.editMode"
-              (click)="customers.deleteCustomer(customer.id)"
+              (click)="customers.deleteCustomer(customer._id)"
             >
               Delete
             </button>
             <button
               class="btn btn-info mr-2"
               *ngIf="customer.editMode"
-              (click)="toggleEditable(customer.id)"
+              (click)="toggleEditable(customer._id)"
             >
               Cancel
             </button>

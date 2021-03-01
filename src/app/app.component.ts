@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Angular';
   clickMessage: string ="status"
-
+  today = new Date;
   constructor(private route: Router) {
 
   }
