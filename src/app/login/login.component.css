@@ -1,0 +1,10 @@
+
+.login-container {
+    max-width: calc(100% - 40px);
+    padding: 20px;
+  }
+  
+  .login-container > .card > .card-body > form {
+    width: 500px;
+    max-width: 100%;
+  }

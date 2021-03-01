@@ -1,0 +1,134 @@
+<div class="container">
+<h1>Customer</h1>
+</div>
+<div class="container white-transparent pt-3">
+  <h2>Create Customer</h2>
+  <form #customerForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="exampleInputName">Name</label>
+      <input
+        type="name"
+        name="name"
+        class="form-control"
+        id="exampleInputName"
+        [(ngModel)]="model.attr.name"
+        name="name"
+        aria-describedby="nameHelp"
+        placeholder="Enter Name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        [(ngModel)]="model.attr.email"
+        name="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputAddress">Address</label>
+      <input
+        type="address"
+        name="address"
+        class="form-control"
+        id="exampleInputAddress"
+        [(ngModel)]="model.attr.address"
+        name="address"
+        aria-describedby="addressHelp"
+        placeholder="Enter address"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div class="table-responsive mt-2">
+    <h2>Customer List</h2>
+    <table class="table ">
+      <thead class="thead-dark table-striped table-bordered">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>-</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="!customers.toJSON().length">
+          <td colspan="4" class="text-center">No Record Found</td>
+        </tr>
+        <tr *ngFor="let customer of customers.toJSON()">
+          <td>
+            <span *ngIf="!customer.editMode">{{ customer.attr.name }}</span>
+            <input
+              *ngIf="customer.editMode"
+              type="text"
+              class="form-control"
+              [(ngModel)]="customer.attr.name"
+              name="name"
+              placeholder="Enter Name"
+            />
+          </td>
+          <td>
+            <span *ngIf="!customer.editMode">{{ customer.attr.email }}</span>
+
+            <input
+              *ngIf="customer.editMode"
+              type="email"
+              class="form-control"
+              [(ngModel)]="customer.attr.email"
+              name="email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+            />
+          </td>
+          <td>
+            <span *ngIf="!customer.editMode">{{ customer.attr.address }}</span>
+            <input
+              *ngIf="customer.editMode"
+              type="text"
+              class="form-control"
+              [(ngModel)]="customer.attr.address"
+              name="name"
+              placeholder="Enter Address"
+            />
+          </td>
+          <td>
+            <button
+              *ngIf="!customer.editMode"
+              class="btn btn-info mr-2"
+              (click)="toggleEditable(customer.id)"
+            >
+              Edit
+            </button>
+            <button
+            class="btn btn-primary mr-2"
+              *ngIf="customer.editMode"
+              (click)="customers.updateCustomer(customer.id)"
+            >
+              Update
+            </button>
+            <button
+            class="btn btn-danger mr-2"
+              *ngIf="!customer.editMode"
+              (click)="customers.deleteCustomer(customer.id)"
+            >
+              Delete
+            </button>
+            <button
+              class="btn btn-info mr-2"
+              *ngIf="customer.editMode"
+              (click)="toggleEditable(customer.id)"
+            >
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

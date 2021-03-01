@@ -1,0 +1,79 @@
+.transparent-white {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.transparent-blue {
+  background-color: rgba(0, 123, 254, 0.6);
+}
+.transparent-green {
+  background-color: rgba(19, 163, 184, 0.6);
+}
+.transparent-yellow {
+  background-color: rgb(225 236 158 / 60%);
+}
+.top-card {
+  margin-bottom: 25px;
+  /* margin-top: 25px; */
+}
+@media screen and (max-width: 480px) {
+  .top-card .fare-type-button-wrapper > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+.card-search-btn {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 200px;
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.offer-row {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.offer-card {
+  margin-bottom: 10px;
+}
+
+.offer-card .card-body {
+  margin-left: 30px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  background-color: #fff;
+  padding: 5px;
+}
+.offer-card .image-wrapper {
+  padding: 5px;
+  margin-left: -25px;
+  /* background-color: red; */
+}
+.offer-card .image-wrapper img {
+  width: 50px;
+}
+
+.transparent-blue.offer-card .image-wrapper {
+  background-color: rgb(0, 123, 254);
+}
+.transparent-green.offer-card .image-wrapper {
+  background-color: rgb(19, 163, 184);
+}
+.transparent-yellow.offer-card .image-wrapper {
+  background-color: rgb(225 236 158);
+}
+.offer-card p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.offer-card h4 {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 574px) {
+}
