@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Flight List</h1>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">-</div>
+        <div class="col">Departure</div>
+        <div class="col">Duration</div>
+        <div class="col">Arrival</div>
+        <div class="col d-flex justify-content-end">Price</div>
+        <div class="col d-flex justify-content-end"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card white-transparent"  *ngFor="let flight of flights">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+        <img width={{40}} src="../../assets/images/indigo_logo.png" alt="indigo Logo" />   IndiGo
+        </div>
+        <div class="col">05:00 <br /> New Delhi</div>
+        <div class="col">02 h 40 m <br />  Non stop</div>
+        <div class="col">07:40 <br />  Bengaluru</div>
+        <div class="col d-flex justify-content-end">₹ 6,867</div>
+        <div class="col d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="doBook()">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

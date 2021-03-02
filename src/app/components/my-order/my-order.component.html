@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>My Orders</h1>
+</div>
+
+<div class="container white-transparent ">
+  <div class="table-responsive pt-3 pb-3">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark ">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Price</th>
+          <th>Payment Method</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let order of orders.myOrders">
+                <td>{{order.attr.firstName}} {{order.attr.lastName}}</td>
+                <td>{{order.attr.email}}</td>
+                <td>{{order.attr.flight.price}}</td>
+                <td>
+                    {{order.attr.paymentMode}}
+                    <br />
+                    {{order.attr.cardNumber}}
+                    <br />
+                    {{order.attr.expiryMonth}}
+                    <br />
+                    {{order.attr.nameOnCard}}
+                </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

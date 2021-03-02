@@ -1,0 +1,253 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Search Flight</h1>
+    </div>
+  </div>
+  <!-- Top Card -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card top-card position-relative transparent-white">
+        <div class="card-body">
+          <form
+            [formGroup]="searchForm"
+            (ngSubmit)="onSubmit()"
+            #myform="ngForm"
+          >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="type"
+                      id="inlineRadio1"
+                      value="one_way"
+                      formControlName="type"
+                    />
+                    <label class="form-check-label" for="inlineRadio1"
+                      >ONW WAY</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="type"
+                      id="inlineRadio2"
+                      value="round_trip"
+                      formControlName="type"
+                    />
+                    <label class="form-check-label" for="inlineRadio2"
+                      >ROUND TRIP</label
+                    >
+                  </div>
+                  <div
+                    *ngIf="myform.submitted && searchForm.controls.type.errors"
+                    class="invalid-feedback d-block"
+                  >
+                    <div *ngIf="searchForm.controls.type.errors.required">
+                      Required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-10">
+                <div class="row g-3 mt-10">
+                  <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3">
+                    <label for="from" class="visually-hidden">From</label>
+                    <select class="form-control" formControlName="from">
+                      <option>-</option>
+                      <option value="delhi">Delhi</option>
+                    </select>
+                    <div
+                      *ngIf="
+                        myform.submitted && searchForm.controls.from.errors
+                      "
+                      class="invalid-feedback d-block"
+                    >
+                      <div *ngIf="searchForm.controls.from.errors.required">
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3">
+                    <label for="to" class="visually-hidden">To</label>
+                    <select class="form-control" formControlName="to">
+                      <option>-</option>
+                      <option value="Bengaluru">Bengaluru</option>
+                    </select>
+                    <div
+                      *ngIf="myform.submitted && searchForm.controls.to.errors"
+                      class="invalid-feedback d-block"
+                    >
+                      <div *ngIf="searchForm.controls.to.errors.required">
+                        Required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-sm-6 col-xs-12 col-lg-3">
+                    <label for="departureDate" class="visually-hidden"
+                      >Departure Date</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="departureDate"
+                      placeholder="Date"
+                      formControlName="departureDate"
+                    />
+                    <div
+                      *ngIf="
+                        myform.submitted &&
+                        searchForm.controls.departureDate.errors
+                      "
+                      class="invalid-feedback d-block"
+                    >
+                      <div
+                        *ngIf="
+                          searchForm.controls.departureDate.errors.required
+                        "
+                      >
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="searchForm.controls.type.value === 'round_trip'"
+                    class="col-md-4 col-sm-6 col-xs-12 col-lg-3"
+                  >
+                    <label for="returnDate" class="visually-hidden"
+                      >Return Date</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="returnDate"
+                      placeholder="Date"
+                      formControlName="returnDate"
+                    />
+                    <div
+                      *ngIf="
+                        myform.submitted &&
+                        searchForm.controls.returnDate.errors
+                      "
+                      class="invalid-feedback d-block"
+                    >
+                      <div
+                        *ngIf="searchForm.controls.returnDate.errors.required"
+                      >
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3 mb-3 fare-type-button-wrapper">
+              <div class="col-md-12">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="inlineCheckbox1"
+                    formControlName="isBusiness"
+                    value="y"
+                  />
+                  <label class="form-check-label" for="inlineCheckbox1"
+                    >Business</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="inlineCheckbox2"
+                    formControlName="isBusiness"
+                    value="n"
+                  />
+                  <label class="form-check-label" for="inlineCheckbox2"
+                    >Regular</label
+                  >
+                </div>
+                <div
+                  *ngIf="
+                    myform.submitted && searchForm.controls.isBusiness.errors
+                  "
+                  class="invalid-feedback d-block"
+                >
+                  <div *ngIf="searchForm.controls.isBusiness.errors.required">
+                    Required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary card-search-btn" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Top Card -->
+  <!-- Offer Card -->
+  <div class="row offer-row">
+    <div class="col-md-4">
+      <div class="card offer-card transparent-blue">
+        <div class="card-body position-relative">
+          <div class="row">
+            <div class="col-auto">
+              <div class="image-wrapper">
+                <img src="../../assets/images/pl.png" />
+              </div>
+            </div>
+            <div class="col">
+              <h4>Personal Loan</h4>
+              <p>Lorem Ipsum is simply dummy text of the printing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card offer-card transparent-green">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-auto">
+              <div class="image-wrapper">
+                <img src="../../assets/images/pl.png" />
+              </div>
+            </div>
+            <div class="col">
+              <h4>Personal Loan</h4>
+              <p>Lorem Ipsum is simply dummy text of the printing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card offer-card transparent-yellow">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-auto">
+              <div class="image-wrapper">
+                <img src="../../assets/images/pl.png" />
+              </div>
+            </div>
+            <div class="col">
+              <h4>Personal Loan</h4>
+              <p>Lorem Ipsum is simply dummy text of the printing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Offer Card -->
+</div>

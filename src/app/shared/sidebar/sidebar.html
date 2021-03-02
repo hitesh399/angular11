@@ -1,0 +1,18 @@
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <a href="" class="simple-text logo-mini">
+      <div class="logo-image-small">
+        <img src="assets/img/angular2-logo.png">
+      </div>
+    </a>
+    <a href="" class="simple-text logo-normal">
+      Demo Company
+    </a>
+  </div>
+  <ul class="nav flex-column flex-nowrap overflow-hidden">
+    <app-nav-item [items]="menuItems"></app-nav-item>
+    <li>
+      <a href="javascript:void(0)" (click)="logout()"><i class="fa fa-sign-out-alt"></i>Log Out</a>
+    </li>
+  </ul>
+</div>

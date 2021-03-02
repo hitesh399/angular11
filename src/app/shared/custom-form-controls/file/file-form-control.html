@@ -1,0 +1,51 @@
+<ng-template #defaultImgTpl>
+    <div class="image-icon-container">
+        <a (click)="open($event)" href="javascript:void(0)">
+            <img [src]="imageUrl" />
+        </a>
+    </div>
+</ng-template>
+<ng-template #defaultTpl>
+    <a (click)="open($event)" href="javascript:void(0)">
+        <em class="fa fa-file" style="font-size: x-large;"></em>
+    </a>
+</ng-template>
+
+<ng-template #simpleTpl>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+</ng-template>
+
+<div class="file-container">
+    <input type="file" style="display: none;" [id]="ID" (change)="onFileChange($event)">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex ">
+                <div class="w-100 d-flex align-content-center flex-wrap">
+                    <div class="d-flex">
+                        <div class="flex-shrink-1 pr-2 d-flex align-items-center" *ngIf="isFile">
+                            <ng-container *ngTemplateOutlet="isImage? defaultImgTpl : defaultTpl"></ng-container>
+                        </div>
+                        <div class="w-100 d-flex align-content-center flex-wrap">
+                            <div style="word-break: break-all;">
+                                {{isFile ? value.name : 'No File Selected'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isFile" class="pl-2 flex-shrink-1 d-flex align-content-center flex-wrap">
+                    <em class="fa fa-trash-alt" style="font-size: x-large; cursor: pointer; "
+                        (click)="remove($event)"></em>
+                </div>
+                <div class="pl-2 flex-shrink-1 d-flex align-content-center flex-wrap">
+
+                    <button class="btn btn-primary btn-sm choose-btn" (click)="openBrowser($event)"
+                        type="button">Browse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

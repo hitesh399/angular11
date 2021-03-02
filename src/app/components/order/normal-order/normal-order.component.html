@@ -1,0 +1,45 @@
+<div class="container">
+  <h3>Normal Order</h3>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">-</div>
+        <div class="col">Departure</div>
+        <div class="col">Duration</div>
+        <div class="col">Arrival</div>
+        <div class="col d-flex justify-content-end">Price</div>
+        <div class="col d-flex justify-content-end"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card white-transparent" *ngFor="let flight of flightService.flights">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <img
+            width="{{ 40 }}"
+            src="{{flight.attr.icon}}"
+            alt="indigo Logo"
+          />
+          {{flight.attr.provider}}
+        </div>
+        <div class="col">
+            {{flight.attr.arrivalTime}} <br />
+            {{flight.attr.from}} 
+        </div>
+        <div class="col">
+          02 h 40 m <br />
+          Non stop
+        </div>
+        <div class="col">
+            {{flight.attr.arrivalTime}}<br />
+            {{flight.attr.to}}
+        </div>
+        <div class="col d-flex justify-content-end"> {{ flight.attr.price }}</div>
+        <div class="col d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="checkout(flight.attr.id)">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
