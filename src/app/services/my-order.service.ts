@@ -15,7 +15,9 @@ export class MyOrderService {
 
   async fetchMyOrder() {
     this.myOrders = [];
-    const response: any = await this.http.get('http://localhost:7000/orders/list').toPromise();
+    const response: any = await this.http
+      .get('http://localhost:7000/orders/list')
+      .toPromise();
     response.forEach((order: MyOrderInterface) => {
       this.myOrders.push(new MyOrder(order));
     });

@@ -40,10 +40,10 @@ export class MyCustomerComponent implements OnInit {
 
   async onSubmit() {
     await this.customers.addCustomer(
-      this.model.attr.first_name,
-      this.model.attr.last_name,
-      this.model.attr.email,
-      this.model.attr.address
+      this.model.first_name,
+      this.model.last_name,
+      this.model.email,
+      this.model.address
     );
     this.toast.success("Customer has been created successfully.")
     this.model = new Customer({});
@@ -55,6 +55,7 @@ export class MyCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.customers.fetchCustomer();
-    
+    this.model.phone = "dsfdsf"
+    console.log(this.model.phone, "dsds")
   }
 }

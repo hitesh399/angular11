@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BaseModel } from 'src/app/models/BaseModel';
+import { BaseModel, Model } from 'src/app/models/BaseModel';
 import { NGXLogger } from 'ngx-logger';
 import { NextObserver, Observable } from 'rxjs';
 
 interface CustomerInterface {
-  _id?: string;
+  // _id?: string;
   id?: number;
   first_name?: string;
   last_name?: string;
@@ -15,7 +15,15 @@ interface CustomerInterface {
   company?: object;
   phone?: string;
 }
-export class Customer extends BaseModel<CustomerInterface> {
+export class Customer extends Model<CustomerInterface> {
+  id?: number;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  address?: string;
+  salary?: number;
+  company?: object;
+  phone?: string;
   constructor(data: CustomerInterface) {
     super(data);
   }
@@ -53,7 +61,7 @@ export class CustomerService {
         address,
       })
       .toPromise();
-    customer.attr.id = response.id;
+    customer.id = response.id;
     return customer;
   }
   /**
@@ -67,7 +75,7 @@ export class CustomerService {
     const cData = cus ? cus.update(data) : false;
     this.http
       .put(
-        `http://localhost:7000/users/update/${cData ? cData.attr.id : null}`,
+        `http://localhost:7000/users/update/${cData ? cData.id : null}`,
         cData ? cData.toJSON() : {}
       )
       .subscribe();
@@ -102,7 +110,7 @@ export class CustomerService {
     this.customers.some((customer, i) => {
       if (customer._id === _id) {
         index = i;
-        id = customer.attr.id;
+        id = customer.id;
       }
     });
 
