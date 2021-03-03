@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastModule } from './toast/toast.module';
-// import { SubmitButtonModule } from './button/submit/submit-button.module';
+import { SubmitButtonModule } from './button/submit/submit-button.module';
 // import { FooterModule } from './footer/footer.module';
 // import { NavbarModule } from './navbar/navbar.module';
 // import { SidebarModule } from './sidebar/sidebar.module';
@@ -24,7 +24,7 @@ import { ToastModule } from './toast/toast.module';
 
         /** Start Shared Modules*/
         ToastModule,
-        // SubmitButtonModule,
+        SubmitButtonModule,
         // FooterModule,
         // NavbarModule,
         // SidebarModule,
@@ -42,7 +42,7 @@ import { ToastModule } from './toast/toast.module';
 
         /** Start Shared Modules*/
         ToastModule,
-        // SubmitButtonModule,
+        SubmitButtonModule,
         // FooterModule,
         // NavbarModule,
         // SidebarModule,

@@ -19,12 +19,17 @@ export class DashboardComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router) {
     this.searchForm = this.fb.group(
       {
+        type: new FormControl('', [Validators.required]),
         from: new FormControl('', [Validators.required]),
         to: new FormControl('', [Validators.required]),
         departureDate: new FormControl('', [Validators.required]),
-        returnDate: new FormControl('', RequiredIf('type', 'round_trip')),
-        type: new FormControl('', [Validators.required]),
+        returnDate: new FormControl(''),
         isBusiness: new FormControl('', [Validators.required]),
+      },
+      {
+        validators: Validators.compose([
+          RequiredIf('returnDate', 'type', 'round_trip'),
+        ]),
       }
     );
     // console.log('this.searchForm', this.searchForm);
@@ -33,11 +38,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    console.log('this.searchForm', this.searchForm);
     if (this.searchForm.invalid) return;
     if (this.searchForm.controls.isBusiness.value === 'y') {
-      this.router.navigateByUrl('/order/premium-order');
+      this.router.navigate(['/order/premium-order'], {
+        queryParams: this.searchForm.value,
+      });
     } else {
-      this.router.navigateByUrl('/order/normal-order');
+      // this.router.navigateByUrl('/order/normal-order');
+      this.router.navigate(['/order/normal-order'], {
+        queryParams: this.searchForm.value,
+      });
     }
     // if
     // console.log('this', this.searchForm);

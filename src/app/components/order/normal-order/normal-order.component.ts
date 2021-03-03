@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlightService } from '../../../services/flight.service';
 
 @Component({
@@ -8,10 +8,18 @@ import { FlightService } from '../../../services/flight.service';
   styleUrls: ['./normal-order.component.css'],
 })
 export class NormalOrderComponent implements OnInit {
-  constructor(public flightService: FlightService, private router: Router) {}
+  constructor(
+    public flightService: FlightService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.flightService.fetchFlight();
+    let params = {};
+    this.route.queryParams.forEach((v) => {
+      params = v;
+    });
+    this.flightService.fetchFlight('n', params);
   }
 
   checkout(id: number): void {

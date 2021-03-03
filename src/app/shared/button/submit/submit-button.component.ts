@@ -6,7 +6,7 @@ import { FormGroup, ControlContainer } from '@angular/forms';
     selector: 'submit-btn'
 })
 export class SubmitButtonComponent implements OnInit {
-    myForm: FormGroup;
+    myForm?: FormGroup;
     @Input() style: any;
 
     constructor(private controlContainer: ControlContainer) { }
@@ -14,9 +14,9 @@ export class SubmitButtonComponent implements OnInit {
         this.myForm = <FormGroup>this.controlContainer.control;
     }
     get isDisabled() {
-        return this.myForm.disabled
+        return this.myForm?.disabled
     }
     get isInvalid() {
-        return this.myForm.invalid
+        return this.myForm?.invalid
     }
 }

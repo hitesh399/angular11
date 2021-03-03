@@ -10,8 +10,8 @@ export class FlightService {
 
   constructor(private http: HttpClient) {}
 
-  async fetchFlight(isBusiness: string = 'n'): Promise<Flight[]> {
-    this.flights = []
+  async fetchFlight(isBusiness: string = 'n', params?: any): Promise<Flight[]> {
+    this.flights = [];
     const response: any = await this.http
       .get('http://localhost:7000/flights/list/', {
         // params: { isBusiness },
@@ -19,7 +19,11 @@ export class FlightService {
       .toPromise();
 
     response.forEach((f: any) => {
-      if(f.isBusiness === isBusiness) {
+      const isFromMatched =
+        !params.from || (params.from && params.from === f.from);
+      const isToMatched = !params.to || (params.to && params.to === f.to);
+      console.log("isFromMatched", isFromMatched, params.from , f.from)
+      if (f.isBusiness === isBusiness && isFromMatched && isToMatched) {
         this.flights.push(new Flight(f));
       }
     });

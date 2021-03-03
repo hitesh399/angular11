@@ -14,6 +14,7 @@ interface CustomerInterface {
   salary?: number;
   company?: object;
   phone?: string;
+
 }
 export class Customer extends Model<CustomerInterface> {
   id?: number;
@@ -24,6 +25,7 @@ export class Customer extends Model<CustomerInterface> {
   salary?: number;
   company?: object;
   phone?: string;
+  editMode: boolean = false;
   constructor(data: CustomerInterface) {
     super(data);
   }

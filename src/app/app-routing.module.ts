@@ -10,25 +10,47 @@ import { NormalOrderComponent } from './components/order/normal-order/normal-ord
 import { PremiumOrderComponent } from './components/order/premium-order/premium-order.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MyOrderComponent } from './components/my-order/my-order.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routers: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'customer', component: MyCustomerComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'flights', component: FlightListComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'auth',
+  },
+  { path: 'auth', component: LoginComponent, canActivate: [AuthGuard] },
+  {
+    path: 'customer',
+    component: MyCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'flights', component: FlightListComponent, canActivate: [AuthGuard] },
   {
     path: 'order',
     component: OrderComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'normal-order', pathMatch: 'full' },
       { path: 'normal-order', component: NormalOrderComponent },
       { path: 'premium-order', component: PremiumOrderComponent },
     ],
   },
-  { path: 'checkout/:id', component: CheckoutComponent },
-  { path: 'my-order', component: MyOrderComponent },
+  {
+    path: 'checkout/:id',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'my-order', component: MyOrderComponent, canActivate: [AuthGuard] },
+  { path: 'pie-chart', component: PieChartComponent, canActivate: [AuthGuard] },
   {
     path: 'feedback',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./modules/feedback/feedback.module').then(
         (m) => m.FeedbackModule

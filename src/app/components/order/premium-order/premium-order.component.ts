@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlightService } from '../../../services/flight.service';
 
 @Component({
@@ -8,12 +8,22 @@ import { FlightService } from '../../../services/flight.service';
   styleUrls: ['./premium-order.component.css'],
 })
 export class PremiumOrderComponent implements OnInit {
-  constructor(public flightService: FlightService, private router: Router) {}
+  constructor(
+    public flightService: FlightService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.flightService.fetchFlight();
+    // const [params] =
+    let params = {};
+    this.route.queryParams.forEach((v) => {
+      params = v;
+    });
+    // console.log("router", params)
+    this.flightService.fetchFlight('y', params);
   }
   checkout(id: number): void {
-    this.router.navigateByUrl("/checkout/"+ id.toString())
+    this.router.navigateByUrl('/checkout/' + id.toString());
   }
 }
