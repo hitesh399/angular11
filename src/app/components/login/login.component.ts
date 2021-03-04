@@ -13,12 +13,12 @@ import { AuthUserInterface } from 'src/app/models/auth-user';
 
 @Component({
   selector:
-    'login[class="d-flex align-items-center w-100 flex-column h-100 flex-2"][style="flex:2;"]',
+    'login[class="d-flex align-items-center w-100 flex-column justify-content-center h-100 flex-2"][style="flex:2;"]',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public loginForm?: FormGroup;
+  public loginForm!: FormGroup;
 
   constructor(
     private router: Router,
@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
 
   async doLogin() {
     console.log('this.searchForm', this.loginForm);
-    if (this.loginForm?.invalid) return;
+    if (this.loginForm.invalid) return;
     this.loginForm?.disable();
     const response: any = await this.http
       .get('http://localhost:7000/authUsers/list')
       .toPromise();
-    this.loginForm?.enable();
-    const email = this.loginForm?.get('email')?.value;
-    const password = this.loginForm?.get('password')?.value;
+    this.loginForm.enable();
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
     console.log('response', response);
     const [authUser] = response.filter(
       (authUser: AuthUserInterface) =>
@@ -52,9 +52,9 @@ export class LoginComponent implements OnInit {
     );
     if (!authUser) {
       this.toast.danger('Please enter the valid credentials.');
-      this.loginForm
-        ?.get('email')
-        ?.setErrors({ server: 'Invalid Login Credentials.' });
+      // this.loginForm
+      //   ?.get('email')
+      //   ?.setErrors({ server: 'Invalid Login Credentials.' });
       return;
     }
 
